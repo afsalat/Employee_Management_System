@@ -75,13 +75,6 @@ Automatic Group Assignment: Users are automatically assigned to groups based on 
 Custom Permissions
 You can add custom permissions in the Employee model via the Meta class:
 
-python
-Copy code
-class Meta:
-    permissions = [
-        ("can_view_salary", "Can view employee salary"),
-        ("can_edit_position", "Can edit employee position"),
-    ]
 Role Management Interface
 The UI includes options to:
 
