@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .dashboard-container {
+            flex: 1;
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: #ffffff;
+            padding-top: 20px;
+            flex-shrink: 0;
+        }
+        .sidebar a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            padding: 10px 20px;
+            border-radius: 4px;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header, .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h2>Dashboard</h2>
+    </header>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h4 class="text-center">Navigation</h4>
+            <a href="{% url 'employee_list' %}">Employee CRUD</a>
+            <a href="">Web Guide</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dynamic Content Placeholder -->
+            {% block content %}
+            <h3>Welcome to the Dashboard</h3>
+            <p>Select an option from the sidebar to get started.</p>
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 veuz concepts</p>
+    </footer>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
