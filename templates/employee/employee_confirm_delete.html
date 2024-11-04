@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container">
     <h3>Confirm Delete</h3>
-    <p>Are you sure you want to delete {{ employee.name }}?</p>
-    <form method="post" action="{% url 'delete_employee' employee.id %}">
+    <p>Are you sure you want to delete {{ employee.user }}?</p>
+    <form method="post" action="{% url 'employee_delete' employee.id %}">
         {% csrf_token %}
         <button type="submit" class="btn btn-danger">Yes, Delete</button>
         <a href="{% url 'employee_list' %}" class="btn btn-secondary">Cancel</a>

@@ -1,0 +1,36 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<div style="margin: 20px; font-family: Arial, sans-serif;">
+    <h1 style="text-align: center; color: #333;">Update Group</h1>
+    <form method="post" style="width: 50%; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px; color: #333;">Group Name:</label>
+            <input type="text" id="name" name="name" value="{{ group.name }}" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333;">Permissions:</label>
+            <div style="display: flex; flex-wrap: wrap;">
+                {% for permission in permissions %}
+                    <label style="margin-right: 10px; margin-bottom: 5px; font-size: 0.9em; background-color: #e7f3fe; color: #007bff; padding: 5px; border-radius: 5px; display: flex; align-items: center;">
+                        <input type="checkbox" name="permissions" value="{{ permission.id }}"
+                               {% if permission in group_permissions %}checked{% endif %}
+                               style="margin-right: 5px;">
+                        {{ permission.name }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button type="submit" style="background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1em; cursor: pointer;">
+                Update Group
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+

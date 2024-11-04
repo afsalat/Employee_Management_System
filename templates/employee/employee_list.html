@@ -8,22 +8,41 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Email ID</th>
+                <th>Phone</th>
+                <th>Salary</th>
+                {% if perms.employees.add_employee %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for employee in employees %}
             <tr>
                 <td>{{ employee.id }}</td>
-                <td>{{ employee.name }}</td>
+                <td>{{ employee.user }}</td>
+                <td>{{ employee.position.name }}</td>
+                <td>{{ employee.department }}</td>
                 <td>{{ employee.email }}</td>
-                <td>{{ employee.role }}</td>
+                <td>{{ employee.phone }}</td>
+                {% if perms.employees.can_view_employee_salary %}
+                <td>{{ employee.salary }}</td>
+                {% else %}
+                <td>pemission denided</td>
+                {% endif %}
+
+                {% if perms.employees.edit_employee or perms.employees.delete_employee %}
                 <td>
+                {% if perms.employees.edit_employee %}
                     <a href="{% url 'employee_update' employee.id %}" class="btn btn-primary btn-sm">Edit</a>
+                {% endif %}
+                {% if perms.employees.delete_employee %}
                     <a href="{% url 'employee_delete' employee.id %}" class="btn btn-danger btn-sm">Delete</a>
+                {% endif %}
                 </td>
+                {% endif %}
             </tr>
             {% empty %}
             <tr>
@@ -32,6 +51,8 @@
             {% endfor %}
         </tbody>
     </table>
+    {% if perms.employees.add_employee %}
     <a href="{% url 'employee_create' %}" class="btn btn-success mt-3">Add New Employee</a>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,0 +1,13 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<div class="container">
+    <h3>{{ employee.id|yesno:"Update Employee,Create Employee" }}</h3>
+    <form method="post" action="{% if employee.id %}{% url 'employee_update' employee.id %}{% else %}{% url 'employee_create' %}{% endif %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{{ employee.id|yesno:"Update,Create" }}</button>
+        <a href="{% url 'employee_list' %}" class="btn btn-secondary">Cancel</a> 
+    </form>
+</div>
+{% endblock %}
